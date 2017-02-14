@@ -25,6 +25,11 @@ public class MyTaint {
         Log.v(TAG, "tainting SpannableStringBuilder");
 
     }
+
+    static public int addTaintInt(int i){
+        return Taint.addTaintInt(i, taintTag);
+    }
+
     static public void addTaint(Object obj){
         //Taint.addTaintChar('a', Taint.TAINT_TEST);
         Class clz = obj.getClass();

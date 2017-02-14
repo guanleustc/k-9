@@ -26,8 +26,8 @@ import com.fsck.k9.mailstore.LockableDatabase.DbCallback;
 import com.fsck.k9.mailstore.LockableDatabase.WrappedException;
 import com.fsck.k9.message.extractors.PreviewResult.PreviewType;
 
-import com.example.mytaint.MyTaint;
-
+//import com.example.mytaint.MyTaint;
+import dalvik.system.Taint;
 
 public class LocalMessage extends MimeMessage {
     protected MessageReference mReference;
@@ -67,7 +67,12 @@ public class LocalMessage extends MimeMessage {
             this.setFrom(from[0]);
         }
         //hack here
-        MyTaint.addTaint(this);
+
+        //MyTaint.addTaint(this);
+        //mAttachmentCount = MyTaint.addTaintInt(mAttachmentCount);
+
+        mAttachmentCount = Taint.addTaintInt(mAttachmentCount, Taint.TAINT_TEST);
+
 
         this.setInternalSentDate(new Date(cursor.getLong(2)));
         this.setUid(cursor.getString(3));

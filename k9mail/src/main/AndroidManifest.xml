@@ -67,6 +67,8 @@
         android:theme="@style/Theme.K9.Startup"
         android:allowBackup="false">
 
+        <!-- android:largeHeap="true" -->
+
         <meta-data
             android:name="android.app.default_searchable"
             android:value="com.fsck.k9.activity.Search"/>
