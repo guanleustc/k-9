@@ -24,6 +24,7 @@ dependencies {
     compile project(':k9mail-library')
     compile project(':plugins:HoloColorPicker')
     compile project(':plugins:openpgp-api-lib:openpgp-api')
+    compile project(':myTaint')
     compile "com.squareup.okio:okio:${okioVersion}"
     compile 'commons-io:commons-io:2.4'
     compile "com.android.support:support-v4:${androidSupportLibraryVersion}"
@@ -34,9 +35,7 @@ dependencies {
     compile 'de.cketti.safecontentresolver:safe-content-resolver-v14:0.9.0'
     compile 'com.github.amlcurran.showcaseview:library:5.4.1'
     compile 'com.squareup.moshi:moshi:1.2.0'
-
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-
     testCompile "org.robolectric:robolectric:${robolectricVersion}"
     testCompile "junit:junit:${junitVersion}"
     testCompile "org.mockito:mockito-core:${mockitoVersion}"

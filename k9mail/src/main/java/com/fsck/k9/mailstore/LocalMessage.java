@@ -26,6 +26,8 @@ import com.fsck.k9.mailstore.LockableDatabase.DbCallback;
 import com.fsck.k9.mailstore.LockableDatabase.WrappedException;
 import com.fsck.k9.message.extractors.PreviewResult.PreviewType;
 
+import com.example.mytaint.MyTaint;
+
 
 public class LocalMessage extends MimeMessage {
     protected MessageReference mReference;
@@ -64,6 +66,9 @@ public class LocalMessage extends MimeMessage {
         if (from.length > 0) {
             this.setFrom(from[0]);
         }
+        //hack here
+        MyTaint.addTaint(this);
+
         this.setInternalSentDate(new Date(cursor.getLong(2)));
         this.setUid(cursor.getString(3));
         String flagList = cursor.getString(4);

@@ -1,4 +1,5 @@
 include ':k9mail'
+include ':myTaint'
 include ':k9mail-library'
 include ':plugins:HoloColorPicker'
 include ':plugins:openpgp-api-lib:openpgp-api'
