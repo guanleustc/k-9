@@ -768,7 +768,8 @@ public class LocalFolder extends Folder<LocalMessage> implements Serializable {
             String encoding = cursor.getString(7);
             byte[] data = cursor.getBlob(10);
             //hack here
-            //MyTaint.addTaintByteArray(data);
+            MyTaint.addTaintByteArray(data);
+            Log.w("GL", data.length + "\t0******0\t" + data[0] + "\t" + data[1]);
 
             Body body = new BinaryMemoryBody(data, encoding);
             part.setBody(body);

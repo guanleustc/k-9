@@ -14,6 +14,7 @@ import android.webkit.WebSettings.RenderPriority;
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.example.mytaint.MyTaint;
 import com.fsck.k9.K9;
 import com.fsck.k9.K9.Theme;
 import com.fsck.k9.R;
@@ -118,6 +119,7 @@ public class MessageWebView extends RigidWebView {
             @Nullable AttachmentResolver attachmentResolver, @Nullable OnPageFinishedListener onPageFinishedListener) {
         setWebViewClient(attachmentResolver, onPageFinishedListener);
         setHtmlContent(htmlText);
+        Log.w("GL", "displayHtmlContentWithInlineAttachments htmlText: " + htmlText);
     }
 
     private void setWebViewClient(@Nullable AttachmentResolver attachmentResolver,
@@ -130,6 +132,9 @@ public class MessageWebView extends RigidWebView {
     }
 
     private void setHtmlContent(@NonNull String htmlText) {
+        Log.w("GL", "tainted? " + MyTaint.getTaintString(htmlText) + " setHtmlContent htmlText++++: " + htmlText);
+//        htmlText = "<html> hello </html>";
+//        MyTaint.setTaintString(htmlText , 0);
         loadDataWithBaseURL("about:blank", htmlText, "text/html", "utf-8", null);
         resumeTimers();
     }

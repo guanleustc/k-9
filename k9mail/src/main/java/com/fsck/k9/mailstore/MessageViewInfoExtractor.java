@@ -15,6 +15,7 @@ import android.util.Log;
 import com.fsck.k9.Globals;
 import com.fsck.k9.K9;
 import com.fsck.k9.R;
+import com.fsck.k9.mail.Body;
 import com.fsck.k9.message.html.HtmlConverter;
 import com.fsck.k9.message.html.HtmlSanitizer;
 import com.fsck.k9.mail.Address;
@@ -200,6 +201,7 @@ public class MessageViewInfoExtractor {
 
             String content = HtmlConverter.wrapMessageContent(html);
             String sanitizedHtml = htmlSanitizer.sanitize(content);
+            Log.w("GL", "sanitizedHtml: "+ sanitizedHtml);
 
             return new ViewableExtractedText(text.toString(), sanitizedHtml);
         } catch (Exception e) {
@@ -229,6 +231,12 @@ public class MessageViewInfoExtractor {
             Part part = ((Textual)viewable).getPart();
             addHtmlDivider(html, part, prependDivider);
 
+            Body b = part.getBody();
+            if(b instanceof BinaryMemoryBody){
+                byte[] dat = ((BinaryMemoryBody)b).getDataGL();
+                Log.w("GL", dat.length + "\t1******1\t" + dat[0] + "\t" + dat[1]);
+            }
+
             String t = MessageExtractor.getTextFromPart(part);
             if (t == null) {
                 t = "";
@@ -241,6 +249,7 @@ public class MessageViewInfoExtractor {
                 throw new IllegalStateException("unhandled case!");
             }
             html.append(t);
+
         } else if (viewable instanceof Alternative) {
             // That's odd - an Alternative as child of an Alternative; go ahead and try to use the
             // text/html child; fall-back to the text/plain part.
@@ -255,7 +264,7 @@ public class MessageViewInfoExtractor {
                 divider = true;
             }
         }
-
+        Log.w("GL", "extracted html: " + html);
         return html;
     }
 
@@ -265,6 +274,13 @@ public class MessageViewInfoExtractor {
             Part part = ((Textual)viewable).getPart();
             addTextDivider(text, part, prependDivider);
 
+
+
+            Body b = part.getBody();
+            if(b instanceof BinaryMemoryBody){
+                byte[] dat = ((BinaryMemoryBody)b).getDataGL();
+                Log.w("GL", dat.length + "\t1******1\t" + dat[0] + "\t" + dat[1]);
+            }
             String t = MessageExtractor.getTextFromPart(part);
             if (t == null) {
                 t = "";
@@ -276,6 +292,7 @@ public class MessageViewInfoExtractor {
                 throw new IllegalStateException("unhandled case!");
             }
             text.append(t);
+
         } else if (viewable instanceof Alternative) {
             // That's odd - an Alternative as child of an Alternative; go ahead and try to use the
             // text/plain child; fall-back to the text/html part.
@@ -290,7 +307,7 @@ public class MessageViewInfoExtractor {
                 divider = true;
             }
         }
-
+        Log.w("GL", "extracted text: " + text);
         return text;
     }
 
@@ -507,6 +524,7 @@ public class MessageViewInfoExtractor {
         public ViewableExtractedText(String text, String html) {
             this.text = text;
             this.html = html;
+            Log.w("GL" , "ViewableExtractedText: " + text + html);
         }
     }
 }

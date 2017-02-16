@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.StringRes;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.mytaint.MyTaint;
 import com.fsck.k9.Account;
 import com.fsck.k9.Account.ShowPictures;
 import com.fsck.k9.K9;
@@ -106,6 +108,8 @@ public class MessageTopView extends LinearLayout {
 
     public void showMessage(Account account, MessageViewInfo messageViewInfo) {
         resetAndPrepareMessageView(messageViewInfo);
+
+        Log.e("GL", "MessageViewInfo in showMessage: " + MyTaint.getTaintString(messageViewInfo.text) + "\t" + messageViewInfo.text);
 
         ShowPictures showPicturesSetting = account.getShowPictures();
         boolean automaticallyLoadPictures =

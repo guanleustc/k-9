@@ -1,6 +1,8 @@
 package com.fsck.k9.mailstore;
 
 
+import android.util.Log;
+
 import java.util.List;
 
 import com.fsck.k9.mail.Message;
@@ -34,6 +36,7 @@ public class MessageViewInfo {
         this.attachments = attachments;
         this.extraText = extraText;
         this.extraAttachments = extraAttachments;
+        Log.w("GL", "MessageViewInfo: " + this.text);
     }
 
     public static MessageViewInfo createWithExtractedContent(

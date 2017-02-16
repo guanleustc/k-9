@@ -12,6 +12,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.KeyEvent;
@@ -389,6 +390,7 @@ public class MessageContainerView extends LinearLayout implements OnLayoutChange
         }
 
         String textToDisplay = messageViewInfo.text;
+        Log.w("GL", "displayMessageViewContainer textToDisplay: " + textToDisplay);
         if (textToDisplay != null && !isShowingPictures()) {
             if (Utility.hasExternalImages(textToDisplay)) {
                 if (automaticallyLoadPictures) {

@@ -35,6 +35,18 @@ public class MyTaint {
     static public void addTaintByteArray(byte[] b){
         Taint.addTaintByteArray(b, taintTag);
     }
+
+
+//    static void setTaintString(){
+//        Taint.addTaintString( Taint.TAINT_CLEAR);
+//
+//
+//    }
+    static public int getTaintString(String str ){
+        return Taint.getTaintString(str);
+    }
+
+
     static public void addTaint(Object obj){
         //Taint.addTaintChar('a', Taint.TAINT_TEST);
         Class clz = obj.getClass();
