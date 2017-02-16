@@ -68,6 +68,7 @@ import com.fsck.k9.preferences.StorageEditor;
 import org.apache.commons.io.IOUtils;
 import org.apache.james.mime4j.util.MimeUtil;
 
+import com.example.mytaint.MyTaint;
 
 public class LocalFolder extends Folder<LocalMessage> implements Serializable {
 
@@ -766,6 +767,8 @@ public class LocalFolder extends Folder<LocalMessage> implements Serializable {
         } else if (dataLocation == DataLocation.IN_DATABASE) {
             String encoding = cursor.getString(7);
             byte[] data = cursor.getBlob(10);
+            //hack here
+            //MyTaint.addTaintByteArray(data);
 
             Body body = new BinaryMemoryBody(data, encoding);
             part.setBody(body);

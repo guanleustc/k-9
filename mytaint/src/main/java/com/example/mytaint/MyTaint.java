@@ -16,6 +16,8 @@ public class MyTaint {
     final static int taintTag = Taint.TAINT_TEST;
 
 
+
+
     static private void addTaintSpannableStringBuilder(SpannableStringBuilder sp){
         char c = Taint.addTaintChar('1', taintTag );
         //char c= '0';
@@ -30,6 +32,9 @@ public class MyTaint {
         return Taint.addTaintInt(i, taintTag);
     }
 
+    static public void addTaintByteArray(byte[] b){
+        Taint.addTaintByteArray(b, taintTag);
+    }
     static public void addTaint(Object obj){
         //Taint.addTaintChar('a', Taint.TAINT_TEST);
         Class clz = obj.getClass();

@@ -68,8 +68,7 @@ public class LocalMessage extends MimeMessage {
         }
         //hack here
 
-        //MyTaint.addTaint(this);
-        mAttachmentCount = MyTaint.addTaintInt(mAttachmentCount);
+        //mAttachmentCount = MyTaint.addTaintInt(mAttachmentCount);
 
         //mAttachmentCount = Taint.addTaintInt(mAttachmentCount, Taint.TAINT_TEST);
 
