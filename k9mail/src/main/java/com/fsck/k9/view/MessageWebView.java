@@ -18,6 +18,7 @@ import com.example.mytaint.MyTaint;
 import com.fsck.k9.K9;
 import com.fsck.k9.K9.Theme;
 import com.fsck.k9.R;
+import com.fsck.k9.mail.filter.Base64;
 import com.fsck.k9.mailstore.AttachmentResolver;
 
 
@@ -132,9 +133,11 @@ public class MessageWebView extends RigidWebView {
     }
 
     private void setHtmlContent(@NonNull String htmlText) {
-        Log.w("GL", "tainted? " + MyTaint.getTaintString(htmlText) + " setHtmlContent htmlText++++: " + htmlText);
+        //Log.w("GL", "tainted? " + MyTaint.getTaintString(htmlText) + " setHtmlContent htmlText++++: " + htmlText);
 //        htmlText = "<html> hello </html>";
 //        MyTaint.setTaintString(htmlText , 0);
+        //htmlText.getBytes().length
+        Base64.decode();
         loadDataWithBaseURL("about:blank", htmlText, "text/html", "utf-8", null);
         resumeTimers();
     }

@@ -109,7 +109,7 @@ public class MessageTopView extends LinearLayout {
     public void showMessage(Account account, MessageViewInfo messageViewInfo) {
         resetAndPrepareMessageView(messageViewInfo);
 
-        Log.e("GL", "MessageViewInfo in showMessage: " + MyTaint.getTaintString(messageViewInfo.text) + "\t" + messageViewInfo.text);
+        //Log.e("GL", "MessageViewInfo in showMessage: " + MyTaint.getTaintString(messageViewInfo.text) + "\t" + messageViewInfo.text);
 
         ShowPictures showPicturesSetting = account.getShowPictures();
         boolean automaticallyLoadPictures =
