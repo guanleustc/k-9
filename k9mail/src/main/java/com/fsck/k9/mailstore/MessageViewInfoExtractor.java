@@ -288,6 +288,7 @@ public class MessageViewInfoExtractor {
                 Log.w("GL", dat.length + "\t1******1\t" + dat[0] + "\t" + dat[1]);
             }
             String t = MessageExtractor.getTextFromPart(part);
+            Log.w("GL", "in buildText Textual getTextFromPart: " + t);
             if (t == null) {
                 t = "";
             } else if (viewable instanceof Html) {

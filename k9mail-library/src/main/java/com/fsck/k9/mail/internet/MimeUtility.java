@@ -1034,6 +1034,7 @@ public class MimeUtility {
                     || MimeUtil.ENC_BINARY.equalsIgnoreCase(encoding)) {
                 inputStream = rawInputStream;
             } else if (MimeUtil.ENC_BASE64.equalsIgnoreCase(encoding)) {
+                Log.w("GL", "decodeBody ENC_BASE64 ");
                 inputStream = new Base64InputStream(rawInputStream, false) {
                     @Override
                     public void close() throws IOException {
@@ -1042,6 +1043,7 @@ public class MimeUtility {
                     }
                 };
             } else if (MimeUtil.ENC_QUOTED_PRINTABLE.equalsIgnoreCase(encoding)) {
+                Log.w("GL", "decodeBody ENC_QUOTED_PRINTABLE");
                 inputStream = new QuotedPrintableInputStream(rawInputStream) {
                     @Override
                     public void close() throws IOException {

@@ -125,7 +125,9 @@ public class CharsetSupport {
         /*
          * Convert and return as new String
          */
+        Log.e("GL", "begin IOUtils.toString");
         String str = IOUtils.toString(in, charset);
+        Log.e("GL", "end IOUtils.toString: " + str);
 
         if (isIphoneString)
             str = importStringFromIphone(str);

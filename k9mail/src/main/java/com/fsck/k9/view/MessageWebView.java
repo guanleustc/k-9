@@ -132,7 +132,7 @@ public class MessageWebView extends RigidWebView {
     }
 
     private void setHtmlContent(@NonNull String htmlText) {
-        Log.w("GL", "tainted? " + MyTaint.getTaintString(htmlText) + " setHtmlContent htmlText++++: " + htmlText);
+  //      Log.w("GL", "tainted? " + MyTaint.getTaintString(htmlText) + " setHtmlContent htmlText++++: " + htmlText);
 //        htmlText = "<html> hello </html>";
 //        MyTaint.setTaintString(htmlText , 0);
         loadDataWithBaseURL("about:blank", htmlText, "text/html", "utf-8", null);
