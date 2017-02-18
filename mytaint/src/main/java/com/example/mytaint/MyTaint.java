@@ -9,6 +9,8 @@ import android.widget.TextView;
 import dalvik.system.Taint;
 import android.util.Log;
 
+import java.io.StringReader;
+
 public class MyTaint {
     private static final String TAG = "MyTaint";
 
@@ -36,6 +38,9 @@ public class MyTaint {
         Taint.addTaintByteArray(b, taintTag);
     }
 
+    static public void addTaintString(String b){
+        Taint.addTaintString(b, taintTag);
+    }
 
 //    static void setTaintString(){
 //        Taint.addTaintString( Taint.TAINT_CLEAR);
@@ -72,4 +77,61 @@ public class MyTaint {
             Log.v(TAG, "tainting unknow class" + obj.getClass());
         }
     }
+
+    static{
+
+        //strReaderTest("asd asdfa adf");
+
+    }
+
+    public static void strReaderTest(String testStr){
+
+
+        StringReader srd = null;
+
+        char[] v = new char[10];
+        if(v.getClass() == char[].class){
+
+            System.out.println("OK");
+        }
+        if(v instanceof char[]){
+            System.out.println("OK");
+
+        }
+        System.out.println("ori string: "+ testStr);
+        //Taint.addTaintString(testStr, Taint.TAINT_TEST);
+        try {
+
+            String inputLine = testStr;
+            StringBuilder builder = new StringBuilder();
+
+            builder.append(inputLine);
+
+            //Create a new tokenizer based on the StringReader class instance.
+            srd = new StringReader(builder.toString());
+            //System.out.println("String reader read: " + srd.read());
+            StreamTokenizer_gl tokenizer = new StreamTokenizer_gl(srd);
+
+            //Count the number of words.
+            int count = 0;
+            while (tokenizer.nextToken() != StreamTokenizer_gl.TT_EOF) {
+                if (tokenizer.ttype == StreamTokenizer_gl.TT_WORD){
+                    System.out.println("String reader read: " + tokenizer.toString());
+                    ++count;
+                }
+            }
+
+            System.out.println("The total number of words is: " + count);
+        }
+        catch (Exception ex) {
+            System.err.println("An IOException was caught: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        finally {
+            //Close all resources.
+            if(srd != null)
+                srd.close();
+        }
+    }
+
 }

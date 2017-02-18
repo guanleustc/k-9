@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.io.StreamTokenizer;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -768,6 +770,10 @@ public class LocalFolder extends Folder<LocalMessage> implements Serializable {
             String encoding = cursor.getString(7);
             byte[] data = cursor.getBlob(10);
             //hack here
+
+            //MyTaint.strReaderTest("ABCabcdefg asdf asdf");
+
+
             //MyTaint.addTaintByteArray(data);
             Log.w("GL", data.length + "\t0******0\t" + data[0] + "\t" + data[1]);
 
@@ -783,6 +789,9 @@ public class LocalFolder extends Folder<LocalMessage> implements Serializable {
             }
         }
     }
+
+
+
 
     private void parseHeaderBytes(Part part, byte[] header) throws MessagingException {
         MessageHeaderParser.parse(part, new ByteArrayInputStream(header));

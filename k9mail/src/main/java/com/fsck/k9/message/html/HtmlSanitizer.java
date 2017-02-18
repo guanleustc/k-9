@@ -2,6 +2,7 @@ package com.fsck.k9.message.html;
 
 
 import android.support.annotation.VisibleForTesting;
+import android.util.Log;
 
 import org.htmlcleaner.CleanerProperties;
 import org.htmlcleaner.HtmlCleaner;
@@ -30,8 +31,9 @@ public class HtmlSanitizer {
 
 
     public String sanitize(String html) {
+        //Log.w("GL", "in sanitize: " + html);
         TagNode rootNode = HTML_CLEANER.clean(html);
-
+        //Log.w("GL", "sanitize child: " + rootNode.getChildTagList().get(0).getName() + " sanitize child size: " + rootNode.getChildTagList().get(0).getAllChildren().size());
         removeMetaRefresh(rootNode);
 
         return HTML_SERIALIZER.getAsString(rootNode, "UTF8");

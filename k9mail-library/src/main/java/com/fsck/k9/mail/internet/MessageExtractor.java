@@ -75,6 +75,7 @@ public class MessageExtractor {
          * We've got a text part, so let's see if it needs to be processed further.
          */
         String charset = getHeaderParameter(part.getContentType(), "charset");
+        Log.w("GL", "getTextFromTextPart charset" + charset);
         /*
          * determine the charset from HTML message.
          */

@@ -199,9 +199,12 @@ public class MessageViewInfoExtractor {
                 }
             }
 
+            Log.w("GL", "before wrapMessageContent html: "+ html);
             String content = HtmlConverter.wrapMessageContent(html);
+            Log.w("GL", "after wrapMessageContent html: "+ content);
             String sanitizedHtml = htmlSanitizer.sanitize(content);
-            Log.w("GL", "sanitizedHtml: "+ sanitizedHtml);
+            //String sanitizedHtml = content;
+            Log.w("GL", "after sanitizedHtml: "+ sanitizedHtml);
 
             return new ViewableExtractedText(text.toString(), sanitizedHtml);
         } catch (Exception e) {
@@ -228,6 +231,7 @@ public class MessageViewInfoExtractor {
     private StringBuilder buildHtml(Viewable viewable, boolean prependDivider) {
         StringBuilder html = new StringBuilder();
         if (viewable instanceof Textual) {
+            Log.w("GL", "in buildHtml Textual");
             Part part = ((Textual)viewable).getPart();
             addHtmlDivider(html, part, prependDivider);
 
@@ -238,6 +242,7 @@ public class MessageViewInfoExtractor {
             }
 
             String t = MessageExtractor.getTextFromPart(part);
+            Log.w("GL", "in buildHtml Textual getTextFromPart: " + t);
             if (t == null) {
                 t = "";
             } else if (viewable instanceof Flowed) {
@@ -254,6 +259,7 @@ public class MessageViewInfoExtractor {
             // That's odd - an Alternative as child of an Alternative; go ahead and try to use the
             // text/html child; fall-back to the text/plain part.
             Alternative alternative = (Alternative) viewable;
+            Log.w("GL", "in buildHtml Alternative");
 
             List<Viewable> htmlAlternative = alternative.getHtml().isEmpty() ?
                     alternative.getText() : alternative.getHtml();
